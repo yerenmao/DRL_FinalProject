@@ -1,14 +1,23 @@
 import os
+import argparse
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Create output folder
+# 解析指令列參數
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input_file", required=True, help="Input File Path")
+parser.add_argument("-o", "--output_dir", required=True, help="Output File Path")
+args = parser.parse_args()
+
+input_file = args.input_file
+
+# 建立輸出資料夾
 os.makedirs("png", exist_ok=True)
 
-# Load CSV
-df = pd.read_csv("outputs/double/a2c_conn0_ep1.csv")
+# 讀取 CSV
+df = pd.read_csv(input_file)
 
-# Metrics to plot
+# 指標名稱對應
 metrics = {
     "system_total_stopped": "System Total Stopped",
     "system_total_waiting_time": "System Total Waiting Time",
@@ -16,7 +25,7 @@ metrics = {
     "system_mean_speed": "System Mean Speed"
 }
 
-# Plot each metric separately
+# 單一指標繪圖
 for col, title in metrics.items():
     plt.figure()
     plt.plot(df["step"], df[col], marker="o")
@@ -28,7 +37,7 @@ for col, title in metrics.items():
     plt.savefig(f"png/{col}.png")
     plt.close()
 
-# Plot all metrics together
+# 多指標總覽圖
 plt.figure(figsize=(12, 8))
 for col, title in metrics.items():
     plt.plot(df["step"], df[col], label=title)
@@ -39,5 +48,5 @@ plt.title("System Metrics Over Time")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig("png/all_metrics.png")
+plt.savefig(os.path.join(args.output_dir, "all_metrics.png"))
 plt.close()
