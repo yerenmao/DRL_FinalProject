@@ -20,14 +20,14 @@ os.makedirs("models/ql", exist_ok=True)
 if __name__ == "__main__":
     alpha = 0.1
     gamma = 0.99
-    decay = 1
+    decay = 0.9999
     runs = 1
     episodes = 5
 
     env = SumoEnvironment(
         net_file="nets/2x2grid/2x2.net.xml",
         route_file="nets/2x2grid/2x2.rou.xml",
-        use_gui=False,
+        use_gui=True,
         num_seconds=40000,
         min_green=5,
         delta_time=5,

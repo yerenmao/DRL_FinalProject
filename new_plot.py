@@ -24,7 +24,7 @@ sns.set(
         "legend.fontsize": 15,
     },
 )
-colors = sns.color_palette("colorblind", 4)
+colors = sns.color_palette("Set1", 5)
 # colors = sns.color_palette("Set1", 2)
 # colors = ['#FF4500','#e31a1c','#329932', 'b', 'b', '#6a3d9a','#fb9a99']
 dashes_styles = cycle(["-", "-.", "--", ":"])
@@ -49,7 +49,7 @@ def plot_df(df, color, xaxis, yaxis, ma=1, label=""):
         std = moving_average(std, ma)
 
     x = df.groupby(xaxis)[xaxis].mean().keys().values
-    plt.plot(x, mean, label=label, color=color, linestyle=next(dashes_styles))
+    plt.plot(x, mean, label=label, color=color)
     plt.fill_between(x, mean + std, mean - std, alpha=0.25, color=color, rasterized=True)
 
     # plt.ylim([0,200])
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     prs.add_argument("-ma", type=int, default=1, help="Moving Average Window.\n")
     prs.add_argument("-sep", type=str, default=",", help="Values separator on file.\n")
     prs.add_argument("-xlabel", type=str, default="Time step (seconds)", help="X axis label.\n")
-    prs.add_argument("-ylabel", type=str, default="Total waiting time (s)", help="Y axis label.\n")
+    prs.add_argument("-ylabel", type=str, default="Mean Speed(m/s)", help="Y axis label.\n") # Mean Speed(m/s)
     prs.add_argument("-output", type=str, default=None, help="PDF output filename.\n")
 
     args = prs.parse_args()
@@ -93,6 +93,7 @@ if __name__ == "__main__":
     plt.ylabel(args.ylabel)
     plt.xlabel(args.xlabel)
     plt.ylim(bottom=0)
+    plt.legend(fontsize=12)
 
     if args.output is not None:
         plt.savefig(args.output, bbox_inches="tight")
