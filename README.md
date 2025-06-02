@@ -2,10 +2,10 @@
 
 ## Group Members
 
-Shun Ying Chen
-Po Jen Ko
-Tzu Hung Huang
-Li Chen Kao
+- Shun Ying Chen
+- Po Jen Ko
+- Tzu Hung Huang
+- Li Chen Kao
 
 ## Introduction
 
