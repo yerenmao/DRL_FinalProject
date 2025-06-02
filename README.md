@@ -1,5 +1,14 @@
 # DRL_FinalProject
 
+## Group Members
+
+Shun Ying Chen
+Po Jen Ko
+Tzu Hung Huang
+Li Chen Kao
+
+## Introduction
+
 Urban traffic congestion remains a major challenge in modern cities, leading to
 increased travel times, fuel consumption, and greenhouse gas emissions. Traditional
 traffic signal control systems often rely on fixed schedules or handcrafted rules,
